@@ -1,0 +1,20 @@
+.search {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+.id-card {
+	padding: 20px;
+	margin-top: 20px;
+}
+
+.card-inner {
+	margin: 10px;
+	background-color: #eeeeee;
+}
+
+.friend-pic {
+	width: 80%;
+	height: 80px;
+	margin: 10px 10%;
+}
