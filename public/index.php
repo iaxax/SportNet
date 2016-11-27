@@ -11,6 +11,9 @@ if (PHP_SAPI == 'cli-server') {
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// TODO can't work on Apache, but work on PHP built-in Server...
+new PDO('sqlite:' . __DIR__ . '/../data/db.sqlite3');
+
 session_start();
 
 // Instantiate the app

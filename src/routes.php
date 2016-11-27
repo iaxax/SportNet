@@ -1,21 +1,20 @@
 <?php
 // Routes
 
-//home page
+// Home page
 $app->get('/[{name}]', function ($request, $response, $args) {
     return $this->renderer->render($response, 'login.html', $args);
 });
 
-require_once "controller/AccountController.php";
+// 加载所有控制器类
+require "requires.php";
 
-//Account Handler
-$app->post('/controller/AccountController',
+// 拦截用户请求并处理
+$app->post('/controller/{controller}/{method}/',
     function (\Slim\Http\Request $request, $response, $args) {
-        $name = $request->getParam('name');
-        $pw = $request->getParam('pw');
-        $ctrl = new AccountController();
-        $result = $ctrl->login(new LoginVO($name, $pw));
-
-        return $result->getMessage();
+        $cls = new ReflectionClass($args['controller']);
+        $method = $cls->getMethod($args['method']);
+        $ctrl = $cls->newInstance($request, $response);
+        return $method->invoke($ctrl);
 });
 

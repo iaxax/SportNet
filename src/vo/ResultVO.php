@@ -32,4 +32,10 @@ class ResultVO {
     public function getMessage() {
         return $this->message;
     }
+
+    public function toJson() {
+        $msg = urlencode($this->message);
+        $json = "{success: $this->success, message: $msg}";
+        return urldecode(json_encode($json));
+    }
 }
