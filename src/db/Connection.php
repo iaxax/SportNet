@@ -17,16 +17,11 @@ class Connection {
     static function init() {
         Connection::$path = "sqlite:" . __DIR__ . '/../../data/db.sqlite3';
         if(Connection::$conn == null) {
-            try {
-                Connection::$conn = new PDO(Connection::$path);
-            }
-            catch (Exception $e) {
-                echo $e->getMessage();
-            }
+            Connection::$conn = new PDO(Connection::$path);
         }
     }
 
-    public static function getConnection() {
+    public static function getConnection() : PDO {
         return Connection::$conn;
     }
 }

@@ -12,6 +12,18 @@ require __DIR__ . "/../db/Connection.php";
  */
 class AccountModel {
 
+    private $conn;
+
+    private $login_sql;
+
+    public function __construct() {
+        $this->conn = Connection::getConnection();
+        $this->login_sql = $this->conn->prepare("
+            select * from user
+            where name = ? and password = ?
+        ");
+    }
+
     /**
      * 处理用户登录请求
      *
@@ -19,11 +31,23 @@ class AccountModel {
      * @return ResultVO
      */
     public function login(LoginVO $vo) {
-        // TODO: Implement login() method.
         $name = $vo->getName();
         $pw = $vo->getPassword();
-        Connection::getConnection();
-        return new ResultVO(true, "$name->$pw");
+        $result = $this->conn->query(
+            "select count(*) from user " .
+            "where user.name = '$name' and user.password = '$pw';"
+        );
+        if($result == null) {
+            return new ResultVO(false, "ha");
+        }
+//        $this->login_sql->execute(array($name, $pw));
+//
+//        if($rows[0] == 1) {
+//            new ResultVO(true, "登录成功");
+//        }
+
+        return new ResultVO(false, "账号与密码不匹配");
+
     }
 
     /**

@@ -5,4 +5,5 @@
       <server host="localhost" id="91ffe9ff-b38d-42a6-9feb-8cf302a97c61" name="Apache Server" />
     </servers>
   </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7" />
 </project>

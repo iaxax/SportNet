@@ -59,7 +59,7 @@
             var name = $('#name').val();
             var pw = $('#pw').val();
             $.ajax({
-                url: 'controller/AccountController/login/',
+                url: '/controller/AccountController/login',
                 method: 'post',
                 data: {"name": name, "pw": pw},
                 success: function (result) {
