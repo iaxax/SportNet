@@ -10,15 +10,16 @@
  */
 class Connection {
 
-    private static $path;
+    private static $path = null;
 
-    private static $conn;
+    private static $conn = null;
 
     static function init() {
-        Connection::$path = "sqlite:" . __DIR__ . '/../../data/db.sqlite3';
+        Connection::$path = "sqlite:" . __DIR__ . '/../../data/sport_net.db';
         if(Connection::$conn == null) {
             Connection::$conn = new PDO(Connection::$path);
         }
+
     }
 
     public static function getConnection() : PDO {

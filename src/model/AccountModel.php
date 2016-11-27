@@ -14,14 +14,8 @@ class AccountModel {
 
     private $conn;
 
-    private $login_sql;
-
     public function __construct() {
         $this->conn = Connection::getConnection();
-        $this->login_sql = $this->conn->prepare("
-            select * from user
-            where name = ? and password = ?
-        ");
     }
 
     /**
@@ -33,21 +27,17 @@ class AccountModel {
     public function login(LoginVO $vo) {
         $name = $vo->getName();
         $pw = $vo->getPassword();
-        $result = $this->conn->query(
-            "select count(*) from user " .
-            "where user.name = '$name' and user.password = '$pw';"
-        );
-        if($result == null) {
-            return new ResultVO(false, "ha");
+        $sql = "SELECT count(*) FROM user WHERE " .
+            "name = '$name' and password = '$pw';";
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch(PDO::FETCH_NUM);
+
+        if($rows[0] == 1) {
+            return new ResultVO(true, "登录成功");
         }
-//        $this->login_sql->execute(array($name, $pw));
-//
-//        if($rows[0] == 1) {
-//            new ResultVO(true, "登录成功");
-//        }
-
-        return new ResultVO(false, "账号与密码不匹配");
-
+        else {
+            return new ResultVO(false, "登录失败" . $rows[0]);
+        }
     }
 
     /**
