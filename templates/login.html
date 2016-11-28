@@ -5,16 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <title>SportNet</title>
-    <link rel="stylesheet" href="../res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/res/css/style.css">
 
     <style>
-        * {
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei",serif;
-        }
-
         .input-container {
             width: 46%;
             margin: 30px 27%;
@@ -27,10 +21,15 @@
             direction: rtl;
         }
 
-        #register {
+        #register, #tip {
             margin-left: 30px;
             margin-right: 30px;
             padding-top: 8px;
+        }
+
+
+        #tip {
+            color: #ff2323;
         }
 
     </style>
@@ -47,15 +46,17 @@
                    placeholder="输入密码" id="pw">
         </div>
         <div class="btn-container">
-            <a href="#" id="register" class="">注册</a>
+            <a href="/templates/register.html" id="register">注册</a>
             <input class="btn btn-default" type="submit" value="登录" id="login">
+            <label for="tip" id="tip"></label>
         </div>
     </form>
 
-    <script src="../res/js/jquery-3.1.1.min.js"></script>
-    <script src="../res/js/bootstrap.min.js"></script>
+    <script src="/res/js/jquery-3.1.1.min.js"></script>
+    <script src="/res/js/bootstrap.min.js"></script>
     <script>
-        $('#login').on('click', function () {
+        $('#login').on('click', function (e) {
+            e.preventDefault();
             var name = $('#name').val();
             var pw = $('#pw').val();
             $.ajax({
@@ -63,7 +64,20 @@
                 method: 'post',
                 data: {"name": name, "pw": pw},
                 success: function (result) {
-                    alert(result);
+                    var vo = JSON.parse(result);
+                    var tip = $('#tip');
+                    //设置提示标签可见
+                    tip.css('display', 'inline');
+                    if(!vo.success) {
+                        tip.text(vo.message);
+                        //定时隐藏标签
+                        setTimeout(function () {
+                            tip.css('display', 'none');
+                        }, 2000);
+                    }
+                    else {
+                        window.location = '/templates/home.html';
+                    }
                 }
             })
         });

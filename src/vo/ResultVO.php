@@ -35,7 +35,10 @@ class ResultVO {
 
     public function toJson() {
         $msg = urlencode($this->message);
-        $json = "{success: $this->success, message: $msg}";
+        $json = array(
+            "success" => $this->success,
+            "message" => $msg
+        );
         return urldecode(json_encode($json));
     }
 }

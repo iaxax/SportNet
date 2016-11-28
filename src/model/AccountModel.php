@@ -12,10 +12,35 @@ require __DIR__ . "/../db/Connection.php";
  */
 class AccountModel {
 
+    //数据库连接
     private $conn;
+
+    //查询系统中是否存在该账号
+    private $loginSql;
+
+    //查询待注册账号是否已经存在
+    private $registerQuery;
+
+    //新建账号记录
+    private $registerInsert;
 
     public function __construct() {
         $this->conn = Connection::getConnection();
+
+        $this->loginSql = $this->conn->prepare(
+            "SELECT count(*) FROM user " .
+            "WHERE name = :name AND password = :pw ;"
+        );
+
+        $this->registerQuery = $this->conn->prepare(
+            "SELECT count(*) FROM user " .
+            "WHERE name = :name ;"
+        );
+
+        $this->registerInsert = $this->conn->prepare(
+            "INSERT INTO user VALUES " .
+            "(:name, :nickname, :email, :password);"
+        );
     }
 
     /**
@@ -27,16 +52,17 @@ class AccountModel {
     public function login(LoginVO $vo) {
         $name = $vo->getName();
         $pw = $vo->getPassword();
-        $sql = "SELECT count(*) FROM user WHERE " .
-            "name = '$name' and password = '$pw';";
-        $result = $this->conn->query($sql);
-        $rows = $result->fetch(PDO::FETCH_NUM);
+        $this->loginSql->execute(
+            array(':name' => $name, ':pw' => $pw)
+        );
+        $rows = $this->loginSql->fetch(PDO::FETCH_NUM);
 
         if($rows[0] == 1) {
+            $_SESSION[$name] = true;
             return new ResultVO(true, "登录成功");
         }
         else {
-            return new ResultVO(false, "登录失败" . $rows[0]);
+            return new ResultVO(false, "账号与密码不匹配");
         }
     }
 
@@ -46,11 +72,23 @@ class AccountModel {
      * @param RegisterVO $vo 注册参数，参见RegisterVO的定义
      * @return ResultVO
      */
-    public function register(RegisterVO $vo)
-    {
-        // TODO: Implement register() method.
+    public function register(RegisterVO $vo) {
+        //查询系统中是否已经存在该账号
         $name = $vo->getName();
-        $pw = $vo->getPassword();
-        return new ResultVO(true, "$name->$pw");
+        $this->registerQuery->execute(
+            array(':name' => $name)
+        );
+        if ($this->registerQuery->fetchColumn()) {
+            return new ResultVO(false, "该账户已经存在");
+        }
+
+        //新建账号
+        $this->registerInsert->execute(array(
+            ':name' => $name,
+            ':nickname' => $vo->getNickname(),
+            ':email' => $vo->getEmail(),
+            ':password' => $vo->getPassword()
+        ));
+        return new ResultVO(true, "注册账号成功");
     }
 }
