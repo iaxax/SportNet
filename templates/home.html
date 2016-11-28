@@ -57,7 +57,7 @@
     <main class="container">
         <aside class="row col-md-3">
             <img id="user_pic" src="/res/images/user_img.png" alt="头像">
-            <p class="text-center" id="user_name">张三</p>
+            <p class="text-center" id="user_name"></p>
             <button class="btn btn-default center-block aside-btn"
                     >运动状态</button>
             <button class="btn btn-default center-block aside-btn"
@@ -75,34 +75,44 @@
                         <br />
                         <p class="text-center">今天跑步时长</p>
                         <br />
-                        <p class="text-center">1小时</p>
+                        <p class="text-center">
+                            <span id="todayHour"></span>小时
+                            <span id="todayMinute"></span>分
+                        </p>
                         <br />
                     </div>
                 </div>
                 <div class="col-md-3 state">
                     <div class="state-inner">
                         <br />
-                        <p class="text-center">今天跑步时长</p>
+                        <p class="text-center">总共跑步时长</p>
                         <br />
-                        <p class="text-center">1小时</p>
-                        <br />
-                    </div>
-                </div>
-                <div class="col-md-3 state">
-                    <div class="state-inner">
-                        <br />
-                        <p class="text-center">今天跑步时长</p>
-                        <br />
-                        <p class="text-center">1小时</p>
+                        <p class="text-center">
+                            <span id="allHour"></span>小时
+                            <span id="allMinute"></span>分
+                        </p>
                         <br />
                     </div>
                 </div>
                 <div class="col-md-3 state">
                     <div class="state-inner">
                         <br />
-                        <p class="text-center">今天跑步时长</p>
+                        <p class="text-center">今天跑步步数</p>
                         <br />
-                        <p class="text-center">1小时</p>
+                        <p class="text-center">
+                            <span id="todaySteps"></span>步
+                        </p>
+                        <br />
+                    </div>
+                </div>
+                <div class="col-md-3 state">
+                    <div class="state-inner">
+                        <br />
+                        <p class="text-center">总共跑步步数</p>
+                        <br />
+                        <p class="text-center">
+                            <span id="allSteps"></span>步
+                        </p>
                         <br />
                     </div>
                 </div>
@@ -113,6 +123,30 @@
     <script src="/res/js/jquery-3.1.1.min.js"></script>
     <script src="/res/js/bootstrap.min.js"></script>
     <script>
+        //获得用户信息
+        $.ajax({
+            url: '/controller/ExerciseController/getExerciseStatInfo',
+            method: 'get',
+            success: function(result) {
+                var data = JSON.parse(result);
+                var todayTime = data.todaySportTime;
+                var todayHour = Math.floor(todayTime / 60);
+                var todayMinute = todayTime % 60;
+                $('#todayHour').text(todayHour);
+                $('#todayMinute').text(todayMinute);
+
+                var allTime = data.allSportTime;
+                var allHour = Math.floor(allTime / 60);
+                var allMinute = allTime % 60;
+                $('#allHour').text(allHour);
+                $('#allMinute').text(allMinute);
+
+                $('#todaySteps').text(data.todaySteps);
+                $('#allSteps').text(data.allSteps);
+
+            }
+        });
+
         function showExerciseState() {
 //            $.get('exercise_state.html', function(data) {
 //                $('#main-content').html(data);

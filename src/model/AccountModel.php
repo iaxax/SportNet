@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . "/../db/Connection.php";
-
 /**
  * Created by PhpStorm.
  * User: Y481L
@@ -58,7 +56,7 @@ class AccountModel {
         $rows = $this->loginSql->fetch(PDO::FETCH_NUM);
 
         if($rows[0] == 1) {
-            $_SESSION[$name] = true;
+            $_SESSION['LoginUser'] = $name;
             return new ResultVO(true, "登录成功");
         }
         else {
