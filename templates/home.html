@@ -76,8 +76,7 @@
                         <p class="text-center">今天跑步时长</p>
                         <br />
                         <p class="text-center">
-                            <span id="todayHour"></span>小时
-                            <span id="todayMinute"></span>分
+                            <span id="todayHour"></span>小时<span id="todayMinute"></span>分
                         </p>
                         <br />
                     </div>
@@ -88,8 +87,7 @@
                         <p class="text-center">总共跑步时长</p>
                         <br />
                         <p class="text-center">
-                            <span id="allHour"></span>小时
-                            <span id="allMinute"></span>分
+                            <span id="allHour"></span>小时<span id="allMinute"></span>分
                         </p>
                         <br />
                     </div>
@@ -128,6 +126,7 @@
             url: '/controller/ExerciseController/getExerciseStatInfo',
             method: 'get',
             success: function(result) {
+                alert(result);
                 var data = JSON.parse(result);
                 var todayTime = data.todaySportTime;
                 var todayHour = Math.floor(todayTime / 60);

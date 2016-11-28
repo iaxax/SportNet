@@ -53,6 +53,7 @@ class ExerciseModel {
             $todaySportTime = 0;
             $todaySportSteps = 0;
         }
+
         //获取所有运动统计数据
         $this->allSql->execute(
             array(':user' => $user)
