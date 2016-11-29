@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a6421c-72a0-4ed5-bec1-6a74dccdd501" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/ActivityController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/ActivityModel.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/vo/ActivityVO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/sport_net.db" afterPath="$PROJECT_DIR$/data/sport_net.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/AccountModel.php" afterPath="$PROJECT_DIR$/src/model/AccountModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/requires.php" afterPath="$PROJECT_DIR$/src/requires.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/activity_part.html" afterPath="$PROJECT_DIR$/templates/activity_part.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/friend_part.html" afterPath="$PROJECT_DIR$/templates/friend_part.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/register.html" afterPath="$PROJECT_DIR$/templates/register.html" />
     </list>
     <ignored path="SportNet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,59 +32,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="activity_part.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/activity_part.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/ActivityController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/ActivityModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-147">
-              <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
-              <folding>
-                <marker date="1480427156175" expanded="true" signature="337:382" ph="select * fro... activity" />
-                <marker date="1480427156175" expanded="true" signature="337:409" ph="SELECT * FRO... activity" />
-                <marker date="1480427156175" expanded="true" signature="337:489" ph="SELECT * FRO... activity" />
-                <marker date="1480427156175" expanded="true" signature="337:491" ph="select * fro... activity" />
-                <marker date="1480427156175" expanded="true" signature="337:535" ph="SELECT a.* F... activity" />
-                <marker date="1480427156175" expanded="true" signature="337:600" ph="SELECT a.* F... activity" />
-                <marker date="1480427156175" expanded="true" signature="337:602" ph="SELECT * FRO... activity" />
-                <marker date="1480427156175" expanded="true" signature="821:966" ph="SELECT a.*, activity" />
-                <marker date="1480427156175" expanded="true" signature="1239:1441" ph="SELECT a.* F... activity" />
-                <marker date="1480427156175" expanded="true" signature="1710:1954" ph="SELECT a.* F... activity" />
-                <marker date="1480427156175" expanded="true" signature="2358:2441" ph="select parti... activity_join" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityVO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vo/ActivityVO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ee99d56f-6077-489b-904d-54805d8049a7/console.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="453">
@@ -158,7 +98,6 @@
         <option value="$PROJECT_DIR$/src/controller/FriendController.php" />
         <option value="dbtable:/5a3aaba2/ee99d56f-6077-489b-904d-54805d8049a7/friends" />
         <option value="$PROJECT_DIR$/src/model/FriendModel.php" />
-        <option value="$PROJECT_DIR$/templates/friend_part.html" />
         <option value="$PROJECT_DIR$/src/requires.php" />
         <option value="$PROJECT_DIR$/src/model/AccountModel.php" />
         <option value="$PROJECT_DIR$/templates/register.html" />
@@ -167,6 +106,7 @@
         <option value="$PROJECT_DIR$/src/model/ActivityModel.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ee99d56f-6077-489b-904d-54805d8049a7/console.sql" />
         <option value="$PROJECT_DIR$/templates/activity_part.html" />
+        <option value="$PROJECT_DIR$/templates/friend_part.html" />
       </list>
     </option>
   </component>
@@ -216,7 +156,24 @@
     <panes>
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SportNet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SportNet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SportNet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
       <pane id="Scope" />
     </panes>
@@ -233,7 +190,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)" />
-    <property name="SearchEverywhereHistoryKey" value="ach&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/activity_part.html&#10;friendh&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/friend_part.html&#10;Activ&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/ActivityController.php&#10;activico&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/ActivityController.php&#10;ac&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;activ&#9;FILE&#9;file://F:/product/PHP/SportNet/src/model/ActivityModel.php&#10;login&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/login.html&#10;AccountCon&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;regi&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/register.html&#10;logi&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/login.html&#10;Account&#9;FILE&#9;file://F:/product/PHP/SportNet/src/model/AccountModel.php&#10;home&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/home.html&#10;exer&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/exercise_part.html&#10;AccountC&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;LoginC&#9;null&#9;null&#10;mod&#9;FILE&#9;file://F:/product/PHP/SportNet/src/model/ExerciseModel.php&#10;routes&#9;FILE&#9;file://F:/product/PHP/SportNet/src/routes.php&#10;login.html&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/login.html&#10;Acc&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;requi&#9;FILE&#9;file://F:/product/PHP/SportNet/src/requires.php&#10;Accouc&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;Ex&#9;FILE&#9;file://F:/product/PHP/SportNet/src/vo/ExerciseStat.php&#10;ExerciseIn&#9;FILE&#9;file://F:/product/PHP/SportNet/src/vo/ExerciseInfoVO.php&#10;rou&#9;FILE&#9;file://F:/product/PHP/SportNet/src/routes.php&#10;style.css&#9;FILE&#9;file://F:/product/PHP/SportNet/res/css/style.css&#10;Result&#9;FILE&#9;file://F:/product/PHP/SportNet/src/vo/ResultVO.php&#10;Conne&#9;FILE&#9;file://F:/product/PHP/SportNet/src/db/Connection.php&#10;Connection&#9;FILE&#9;file://F:/product/PHP/SportNet/src/db/Connection.php" />
+    <property name="SearchEverywhereHistoryKey" value="FriendMOde&#9;FILE&#9;file://F:/product/PHP/SportNet/src/model/FriendModel.php&#10;friend&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/friend_part.html&#10;ach&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/activity_part.html&#10;friendh&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/friend_part.html&#10;Activ&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/ActivityController.php&#10;activico&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/ActivityController.php&#10;ac&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;activ&#9;FILE&#9;file://F:/product/PHP/SportNet/src/model/ActivityModel.php&#10;login&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/login.html&#10;AccountCon&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;regi&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/register.html&#10;logi&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/login.html&#10;Account&#9;FILE&#9;file://F:/product/PHP/SportNet/src/model/AccountModel.php&#10;home&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/home.html&#10;exer&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/exercise_part.html&#10;AccountC&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;LoginC&#9;null&#9;null&#10;mod&#9;FILE&#9;file://F:/product/PHP/SportNet/src/model/ExerciseModel.php&#10;routes&#9;FILE&#9;file://F:/product/PHP/SportNet/src/routes.php&#10;login.html&#9;FILE&#9;file://F:/product/PHP/SportNet/templates/login.html&#10;Acc&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;requi&#9;FILE&#9;file://F:/product/PHP/SportNet/src/requires.php&#10;Accouc&#9;FILE&#9;file://F:/product/PHP/SportNet/src/controller/AccountController.php&#10;Ex&#9;FILE&#9;file://F:/product/PHP/SportNet/src/vo/ExerciseStat.php&#10;ExerciseIn&#9;FILE&#9;file://F:/product/PHP/SportNet/src/vo/ExerciseInfoVO.php&#10;rou&#9;FILE&#9;file://F:/product/PHP/SportNet/src/routes.php&#10;style.css&#9;FILE&#9;file://F:/product/PHP/SportNet/res/css/style.css&#10;Result&#9;FILE&#9;file://F:/product/PHP/SportNet/src/vo/ResultVO.php&#10;Conne&#9;FILE&#9;file://F:/product/PHP/SportNet/src/db/Connection.php&#10;Connection&#9;FILE&#9;file://F:/product/PHP/SportNet/src/db/Connection.php" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
@@ -352,12 +309,12 @@
       <workItem from="1480409299001" duration="2843000" />
       <workItem from="1480414632696" duration="2028000" />
       <workItem from="1480419028551" duration="6247000" />
-      <workItem from="1480426305938" duration="1371000" />
+      <workItem from="1480426305938" duration="2893000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106869000" />
+    <option name="totallyTimeSpent" value="108391000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -380,7 +337,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32615384" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298887" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3276923" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28298888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28298888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298887" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -594,25 +551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/5a3aaba2/ee99d56f-6077-489b-904d-54805d8049a7/friends">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/FriendModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="96" column="39" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/FriendController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -718,40 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/friend_part.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ee99d56f-6077-489b-904d-54805d8049a7/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding>
-            <marker date="1480427399863" expanded="true" signature="1619:1674" ph="INSERT INTO activity_join... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vo/ActivityVO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ActivityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/ActivityModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-147">
@@ -774,9 +678,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/activity_part.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
+        <state relative-caret-position="2553">
+          <caret line="111" column="9" selection-start-line="111" selection-start-column="9" selection-end-line="111" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ActivityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vo/ActivityVO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="62" column="53" selection-start-line="62" selection-start-column="53" selection-end-line="62" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/5a3aaba2/ee99d56f-6077-489b-904d-54805d8049a7/friends">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/friend_part.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="107" column="21" selection-start-line="107" selection-start-column="21" selection-end-line="107" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/FriendModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding>
+            <marker date="1480396165134" expanded="true" signature="451:523" ph="SELECT frien... friends" />
+            <marker date="1480396165134" expanded="true" signature="601:715" ph="SELECT name user" />
+            <marker date="1480396165134" expanded="true" signature="1885:1949" ph="INSERT INTO friends... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ee99d56f-6077-489b-904d-54805d8049a7/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding>
+            <marker date="1480427399863" expanded="true" signature="1619:1674" ph="INSERT INTO activity_join... " />
+          </folding>
         </state>
       </provider>
     </entry>

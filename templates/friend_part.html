@@ -30,6 +30,10 @@
         border: deepskyblue 1px solid;
     }
 
+    #tip {
+        margin-left: 20px;
+    }
+
 </style>
 
 <section class="row col-md-9">
@@ -42,6 +46,8 @@
                        id="btn">
             </span>
         </form>
+        <br />
+        <label id="tip"></label>
     </section>
 
     <section id="list"></section>
@@ -93,14 +99,28 @@
                             "id": "btn-" + name
                         }).appendTo(section);
                         //添加按钮的点击事件监听
-                        $('#btn-' + name).on('click', function (e) {
+                        var btn = $('#btn-' + name);
+                        btn.on('click', function (e) {
                             e.preventDefault();
                             $.ajax({
                                 url: '/controller/FriendController/addFriend',
                                 method: 'post',
                                 data: {"name": name},
                                 success: function (result) {
-                                    alert(result);
+                                    var vo = JSON.parse(result);
+                                    var tip = $("#tip");
+                                    tip.css('display', 'inline');
+                                    if(vo.success) {
+                                        tip.css('color', 'green');
+                                        btn.css('display', 'none');
+                                    }
+                                    else {
+                                        tip.css('color', 'red');
+                                    }
+                                    tip.text(vo.message);
+                                    setTimeout(function () {
+                                        tip.css('display', 'none');
+                                    }, 2000);
                                 }
                             });
                         });
