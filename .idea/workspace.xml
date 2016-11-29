@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a6421c-72a0-4ed5-bec1-6a74dccdd501" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/TrackController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/TrackModel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/vo/TrackVO.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/sport_net.db" afterPath="$PROJECT_DIR$/data/sport_net.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/friend_part.html" afterPath="$PROJECT_DIR$/templates/friend_part.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/requires.php" afterPath="$PROJECT_DIR$/src/requires.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/track_part.html" afterPath="$PROJECT_DIR$/templates/track_part.html" />
     </list>
     <ignored path="SportNet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,14 +37,75 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ee99d56f-6077-489b-904d-54805d8049a7/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+            <state relative-caret-position="522">
+              <caret line="110" column="34" selection-start-line="110" selection-start-column="34" selection-end-line="110" selection-end-column="34" />
               <folding>
-                <marker date="1480427399863" expanded="true" signature="1619:1674" ph="INSERT INTO activity_join... " />
+                <marker date="1480436876416" expanded="true" signature="1619:1674" ph="INSERT INTO activity_join... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="track_part.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/track_part.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="track" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/5a3aaba2/ee99d56f-6077-489b-904d-54805d8049a7/track">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrackController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/TrackController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="33" column="36" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrackModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/TrackModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="428">
+              <caret line="46" column="59" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
+              <folding>
+                <marker date="1480436777757" expanded="true" signature="444:463" ph="select * fro... track" />
+                <marker date="1480436777757" expanded="true" signature="444:506" ph="SELECT * FRO... track" />
+                <marker date="1480436777757" expanded="true" signature="444:528" ph="SELECT * FRO... track" />
+                <marker date="1480436777757" expanded="true" signature="444:574" ph="SELECT * FRO... track" />
+                <marker date="1480436777757" expanded="true" signature="845:976" ph="SELECT * FRO... track" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrackVO.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vo/TrackVO.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,7 +151,6 @@
         <option value="$PROJECT_DIR$/src/controller/ExerciseController.php" />
         <option value="$PROJECT_DIR$/src/vo/ExerciseStat.php" />
         <option value="$PROJECT_DIR$/res/css/style.css" />
-        <option value="$PROJECT_DIR$/templates/track_part.html" />
         <option value="$PROJECT_DIR$/res/js/exercise.js" />
         <option value="$PROJECT_DIR$/res/js/friend.js" />
         <option value="$PROJECT_DIR$/templates/exercise_part.html" />
@@ -98,15 +163,19 @@
         <option value="$PROJECT_DIR$/src/controller/FriendController.php" />
         <option value="dbtable:/5a3aaba2/ee99d56f-6077-489b-904d-54805d8049a7/friends" />
         <option value="$PROJECT_DIR$/src/model/FriendModel.php" />
-        <option value="$PROJECT_DIR$/src/requires.php" />
         <option value="$PROJECT_DIR$/src/model/AccountModel.php" />
         <option value="$PROJECT_DIR$/templates/register.html" />
         <option value="$PROJECT_DIR$/src/vo/ActivityVO.php" />
         <option value="$PROJECT_DIR$/src/controller/ActivityController.php" />
         <option value="$PROJECT_DIR$/src/model/ActivityModel.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ee99d56f-6077-489b-904d-54805d8049a7/console.sql" />
         <option value="$PROJECT_DIR$/templates/activity_part.html" />
         <option value="$PROJECT_DIR$/templates/friend_part.html" />
+        <option value="$PROJECT_DIR$/src/requires.php" />
+        <option value="$PROJECT_DIR$/src/model/TrackModel.php" />
+        <option value="$PROJECT_DIR$/src/controller/TrackController.php" />
+        <option value="$PROJECT_DIR$/src/vo/TrackVO.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ee99d56f-6077-489b-904d-54805d8049a7/console.sql" />
+        <option value="$PROJECT_DIR$/templates/track_part.html" />
       </list>
     </option>
   </component>
@@ -156,24 +225,7 @@
     <panes>
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SportNet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SportNet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SportNet" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scope" />
     </panes>
@@ -309,12 +361,12 @@
       <workItem from="1480409299001" duration="2843000" />
       <workItem from="1480414632696" duration="2028000" />
       <workItem from="1480419028551" duration="6247000" />
-      <workItem from="1480426305938" duration="2893000" />
+      <workItem from="1480426305938" duration="7840000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108391000" />
+    <option name="totallyTimeSpent" value="113338000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -337,7 +389,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32615384" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298887" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3276923" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28298888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28298888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298887" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -373,22 +425,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/model/service/IAccountModel.php" />
-    <entry file="file://$PROJECT_DIR$/src/vo/RegisterVO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-262">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/basic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="139" column="44" selection-start-line="139" selection-start-column="40" selection-end-line="139" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/AccountDAO.php" />
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -466,13 +502,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/track_part.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -555,13 +584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/requires.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -676,14 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/activity_part.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2553">
-          <caret line="111" column="9" selection-start-line="111" selection-start-column="9" selection-end-line="111" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ActivityController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -733,13 +747,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/requires.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/TrackModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="46" column="59" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
+          <folding>
+            <marker date="1480436777757" expanded="true" signature="444:463" ph="select * fro... track" />
+            <marker date="1480436777757" expanded="true" signature="444:506" ph="SELECT * FRO... track" />
+            <marker date="1480436777757" expanded="true" signature="444:528" ph="SELECT * FRO... track" />
+            <marker date="1480436777757" expanded="true" signature="444:574" ph="SELECT * FRO... track" />
+            <marker date="1480436777757" expanded="true" signature="845:976" ph="SELECT * FRO... track" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/TrackController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="33" column="36" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/5a3aaba2/ee99d56f-6077-489b-904d-54805d8049a7/track">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/activity_part.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2107">
+          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ee99d56f-6077-489b-904d-54805d8049a7/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+        <state relative-caret-position="522">
+          <caret line="110" column="34" selection-start-line="110" selection-start-column="34" selection-end-line="110" selection-end-column="34" />
           <folding>
-            <marker date="1480427399863" expanded="true" signature="1619:1674" ph="INSERT INTO activity_join... " />
+            <marker date="1480436876416" expanded="true" signature="1619:1674" ph="INSERT INTO activity_join... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vo/TrackVO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/track_part.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

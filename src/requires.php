@@ -14,6 +14,7 @@ require __DIR__ . "/controller/UserController.php";
 require __DIR__ . "/controller/ExerciseController.php";
 require __DIR__ . "/controller/FriendController.php";
 require __DIR__ . "/controller/ActivityController.php";
+require __DIR__ . "/controller/TrackController.php";
 
 require __DIR__ . "/db/Connection.php";
 
@@ -23,4 +24,5 @@ require __DIR__ . "/vo/LoginVO.php";
 require __DIR__ . "/vo/RegisterVO.php";
 require __DIR__ . "/vo/ExerciseStat.php";
 require __DIR__ . "/vo/ActivityVO.php";
+require __DIR__ . "/vo/TrackVO.php";
 

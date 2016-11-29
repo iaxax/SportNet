@@ -32,107 +32,62 @@
     }
 </style>
 
-<section class="row col-md-9" id="main-content">
-    <section class="row">
-        <h2 class="msg-classification-header">今日</h2>
-        <div class="msg-container">
-            <div class="msg-header">
-                <span>您赞了李四的说说</span>
-                <p class="msg-time">2016-10-2 20:00</p>
-            </div>
-            <div class="row msg-body">
-                <div class="col-md-3">
-                    <img class="msg-user-pic" src="/res/images/user_img.png" alt="头像">
-                    <p class="text-center">李四</p>
-                </div>
-                <div class="col-md-9">
-                    <p class="msg-text">今天跑了两公里</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="msg-container">
-            <div class="msg-header">
-                <span>您评论了李四的说说：我也是！</span>
-                <p class="msg-time">2016-10-2 20:00</p>
-            </div>
-            <div class="row msg-body">
-                <div class="col-md-3">
-                    <img class="msg-user-pic" src="/res/images/user_img.png" alt="头像">
-                    <p class="text-center">李四</p>
-                </div>
-                <div class="col-md-9">
-                    <p class="msg-text">今天跑了两公里</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="msg-container">
-            <div class="msg-header">
-                <span>您发表了说说</span>
-                <p class="msg-time">2016-10-2 20:00</p>
-            </div>
-            <div class="row msg-body">
-                <div class="col-md-3">
-                    <img class="msg-user-pic" src="/res/images/user_img.png" alt="头像">
-                    <p class="text-center">张三</p>
-                </div>
-                <div class="col-md-9">
-                    <p class="msg-text">今天跑了两公里</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="row">
-        <h2 class="msg-classification-header">历史</h2>
-        <div class="msg-container">
-            <div class="msg-header">
-                <span>您赞了李四的说说</span>
-                <p class="msg-time">2016-10-2 20:00</p>
-            </div>
-            <div class="row msg-body">
-                <div class="col-md-3">
-                    <img class="msg-user-pic" src="/res/images/user_img.png" alt="头像">
-                    <p class="text-center">李四</p>
-                </div>
-                <div class="col-md-9">
-                    <p class="msg-text">今天跑了两公里</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="msg-container">
-            <div class="msg-header">
-                <span>您评论了李四的说说：我也是！</span>
-                <p class="msg-time">2016-10-2 20:00</p>
-            </div>
-            <div class="row msg-body">
-                <div class="col-md-3">
-                    <img class="msg-user-pic" src="/res/images/user_img.png" alt="头像">
-                    <p class="text-center">李四</p>
-                </div>
-                <div class="col-md-9">
-                    <p class="msg-text">今天跑了两公里</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="msg-container">
-            <div class="msg-header">
-                <span>您发表了说说</span>
-                <p class="msg-time">2016-10-2 20:00</p>
-            </div>
-            <div class="row msg-body">
-                <div class="col-md-3">
-                    <img class="msg-user-pic" src="/res/images/user_img.png" alt="头像">
-                    <p class="text-center">张三</p>
-                </div>
-                <div class="col-md-9">
-                    <p class="msg-text">今天跑了两公里</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="row" id="today">
+    <h2 class="msg-classification-header">今日</h2>
 </section>
 
+<section class="row" id="history">
+    <h2 class="msg-classification-header">历史</h2>
+</section>
+
+<script src="/res/js/jquery-3.1.1.min.js"></script>
+<script src="/res/js/jquery.tmpl.min.js"></script>
+<script>
+
+    var template =
+            '<div class="msg-container">' +
+            '<div class="msg-header">' +
+            '<span>您发表了动态</span>' +
+            '<p class="msg-time">${time}</p>' +
+            '</div>' +
+            '<div class="row msg-body">' +
+            '<div class="col-md-3">' +
+            '<img class="msg-user-pic" src="/res/images/user_img.png" alt="头像">' +
+            '<p class="text-center">${name}</p>' +
+            '</div>' +
+            '<div class="col-md-9">' +
+            '<p class="msg-text">${content}</p>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+    function show(section, result) {
+        var arr = JSON.parse(result);
+        var len = arr.length;
+        for(var i = 0; i < len; ++i) {
+            $.tmpl(template, {
+                "time": arr[i].time,
+                "content": arr[i].content,
+                "name": arr[i].publisher
+            }).appendTo(section);
+        }
+    }
+
+    //今日动态
+    $.ajax({
+        url: '/controller/TrackController/getTodayTracks',
+        method: 'get',
+        success: function (result) {
+            show($('#today'), result);
+        }
+    });
+
+    //历史动态
+    $.ajax({
+        url: '/controller/TrackController/getHistoryTracks',
+        method: 'get',
+        success: function (result) {
+            show($('#history'), result);
+        }
+    });
+</script>
