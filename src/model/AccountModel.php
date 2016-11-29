@@ -19,9 +19,6 @@ class AccountModel {
     //查询待注册账号是否已经存在
     private $registerQuery;
 
-    //新建账号记录
-    private $registerInsert;
-
     public function __construct() {
         $this->conn = Connection::getConnection();
 
@@ -33,11 +30,6 @@ class AccountModel {
         $this->registerQuery = $this->conn->prepare(
             "SELECT count(*) FROM user " .
             "WHERE name = :name ;"
-        );
-
-        $this->registerInsert = $this->conn->prepare(
-            "INSERT INTO user VALUES " .
-            "(:name, :nickname, :email, :password);"
         );
     }
 
@@ -80,13 +72,19 @@ class AccountModel {
             return new ResultVO(false, "该账户已经存在");
         }
 
+        $nickname = $vo->getNickname();
+        $email = $vo->getEmail();
+        $password = $vo->getPassword();
         //新建账号
-        $this->registerInsert->execute(array(
-            ':name' => $name,
-            ':nickname' => $vo->getNickname(),
-            ':email' => $vo->getEmail(),
-            ':password' => $vo->getPassword()
-        ));
-        return new ResultVO(true, "注册账号成功");
+        $count = $this->conn->exec(
+            "INSERT INTO user VALUES " .
+            "('$name', '$nickname', '$email', '$password');"
+        );
+        if($count == 1) {
+            return new ResultVO(true, "注册账号成功");
+        }
+        else {
+            return new ResultVO(false, "注册账号失败");
+        }
     }
 }
