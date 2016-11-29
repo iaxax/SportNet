@@ -16,6 +16,10 @@ class UserInfoVO {
         $this->name = $name;
     }
 
+    public function toMap() {
+        return array("name" => $this->name);
+    }
+
     /**
      * @return mixed
      */

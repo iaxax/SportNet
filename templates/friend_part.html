@@ -1,0 +1,81 @@
+<style>
+    .search {
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    .id-card {
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .card-inner {
+        margin: 10px;
+        background-color: #eeeeee;
+    }
+
+    .friend-pic {
+        width: 80%;
+        height: 80px;
+        margin: 10px 10%;
+    }
+</style>
+
+<section class="row col-md-9">
+    <section class="col-md-8 col-md-offset-2 search">
+        <form action="" class="input-group">
+            <input class="form-control" type="text"
+                   placeholder="输入好友昵称" id="text">
+            <span class="input-group-btn">
+                <input class="btn btn-default" type="submit" value="搜索"
+                       id="btn" onclick="search();">
+            </span>
+        </form>
+    </section>
+
+    <section id="list"></section>
+
+</section>
+
+<script>
+
+    function search() {
+        var key = $('#text').val();
+        $.ajax({
+            url: '/controller/FriendController/findUserByName',
+            method: 'post',
+            data: {"name": key},
+            success: function (result) {
+                alert(result);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+                alert(jqXHR);
+                alert(textStatus);
+            }
+        });
+    }
+
+    $.ajax({
+        url: '/controller/FriendController/getFriends',
+        method: 'get',
+        success: function (result) {
+            var list = JSON.parse(result);
+
+            var template = {
+                pre :
+                    '<div class="id-card col-md-3">' +
+                    '<div class="card-inner">' +
+                    '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
+                    '<p class="text-center">',
+                post : '</p></div>'
+            };
+
+            var section = $('#list');
+            var len = list.length;
+            for (var i = 0; i < len; ++i) {
+                section.append(template.pre + list[i].name + template.post);
+            }
+        }
+    })
+</script>

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <title>SportNet</title>
     <link rel="stylesheet" href="/res/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/res/css/exercise_state.css"/>
     <link rel="stylesheet" href="/res/css/style.css">
 
     <style>
@@ -59,124 +58,47 @@
             <img id="user_pic" src="/res/images/user_img.png" alt="头像">
             <p class="text-center" id="user_name"></p>
             <button class="btn btn-default center-block aside-btn"
-                    >运动状态</button>
+                    onclick="showExerciseState();">运动状态</button>
             <button class="btn btn-default center-block aside-btn"
-                    >好友管理</button>
+                    onclick="showFriendsManagement();">好友管理</button>
             <button class="btn btn-default center-block aside-btn"
-                    >活动管理</button>
+                    onclick="showActivityManagement();">活动管理</button>
             <button class="btn btn-default center-block aside-btn"
-                    >个人动态</button>
+                    onclick="showTracks();">个人动态</button>
         </aside>
 
-        <section class="row col-md-9" id="main-content">
-            <div class="row state-group">
-                <div class="col-md-3 state">
-                    <div class="state-inner">
-                        <br />
-                        <p class="text-center">今天跑步时长</p>
-                        <br />
-                        <p class="text-center">
-                            <span id="todayHour"></span>小时<span id="todayMinute"></span>分
-                        </p>
-                        <br />
-                    </div>
-                </div>
-                <div class="col-md-3 state">
-                    <div class="state-inner">
-                        <br />
-                        <p class="text-center">总共跑步时长</p>
-                        <br />
-                        <p class="text-center">
-                            <span id="allHour"></span>小时<span id="allMinute"></span>分
-                        </p>
-                        <br />
-                    </div>
-                </div>
-                <div class="col-md-3 state">
-                    <div class="state-inner">
-                        <br />
-                        <p class="text-center">今天跑步步数</p>
-                        <br />
-                        <p class="text-center">
-                            <span id="todaySteps"></span>步
-                        </p>
-                        <br />
-                    </div>
-                </div>
-                <div class="col-md-3 state">
-                    <div class="state-inner">
-                        <br />
-                        <p class="text-center">总共跑步步数</p>
-                        <br />
-                        <p class="text-center">
-                            <span id="allSteps"></span>步
-                        </p>
-                        <br />
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section class="row col-md-9" id="main-content"></section>
     </main>
 
     <script src="/res/js/jquery-3.1.1.min.js"></script>
     <script src="/res/js/bootstrap.min.js"></script>
     <script>
-        //获得用户信息
-        $.ajax({
-            url: '/controller/ExerciseController/getExerciseStatInfo',
-            method: 'get',
-            success: function(result) {
-                alert(result);
-                var data = JSON.parse(result);
-                var todayTime = data.todaySportTime;
-                var todayHour = Math.floor(todayTime / 60);
-                var todayMinute = todayTime % 60;
-                $('#todayHour').text(todayHour);
-                $('#todayMinute').text(todayMinute);
-
-                var allTime = data.allSportTime;
-                var allHour = Math.floor(allTime / 60);
-                var allMinute = allTime % 60;
-                $('#allHour').text(allHour);
-                $('#allMinute').text(allMinute);
-
-                $('#todaySteps').text(data.todaySteps);
-                $('#allSteps').text(data.allSteps);
-
-            }
-        });
 
         function showExerciseState() {
-//            $.get('exercise_state.html', function(data) {
-//                $('#main-content').html(data);
-//            });
-            window.location = 'exercise_state.html';
+            $.get('/html/exercise_part.html', function(data) {
+                $('#main-content').html(data);
+            });
         }
 
         function showFriendsManagement() {
-//            $.get('friend.html', function (data) {
-//                $('#main-content').html(data);
-//            });
-            window.location = 'friend.html';
+            $.get('/html/friend_part.html', function (data) {
+                $('#main-content').html(data);
+            });
         }
 
         function showActivityManagement() {
-//            $.get('activity.html', function (data) {
-//                $('#main-content').html(data);
-//            });
-            window.location = 'activity.html';
+            $.get('/html/activity_part.html', function (data) {
+                $('#main-content').html(data);
+            });
         }
 
         function showTracks() {
-//            $.get('track.html', function (data) {
-//                $('#main-content').html(data);
-//            });
-            window.location = 'track.html';
+            $.get('/html/track_part.html', function (data) {
+                $('#main-content').html(data);
+            });
         }
 
-//        jQuery.ready(function() {
-//            showExerciseState();
-//        })
+        showExerciseState();
     </script>
 
 </body>
