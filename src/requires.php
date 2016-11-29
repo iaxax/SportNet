@@ -14,3 +14,10 @@ require __DIR__ . "/controller/UserController.php";
 require __DIR__ . "/controller/ExerciseController.php";
 require __DIR__ . "/controller/FriendController.php";
 require __DIR__ . "/db/Connection.php";
+
+require __DIR__ . "/vo/UserInfoVO.php";
+require __DIR__ . "/vo/ResultVO.php";
+require __DIR__ . "/vo/LoginVO.php";
+require __DIR__ . "/vo/RegisterVO.php";
+require __DIR__ . "/vo/ExerciseStat.php";
+

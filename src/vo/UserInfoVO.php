@@ -20,6 +20,10 @@ class UserInfoVO {
         return array("name" => $this->name);
     }
 
+    public function toJson() {
+        return json_encode($this->toMap());
+    }
+
     /**
      * @return mixed
      */

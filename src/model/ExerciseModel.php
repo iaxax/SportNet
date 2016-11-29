@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . "/../vo/ExerciseStat.php";
-
 /**
  * Created by PhpStorm.
  * User: Y481L

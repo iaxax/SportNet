@@ -31,14 +31,24 @@ class FriendController extends Controller {
     }
 
     /**
-     * 模糊搜索与用户输入用户名匹配的用户
+     * 模糊搜索与用户输入用户名匹配的用户,不包括用户本人
      *
      * @return string 用户列表的json格式
      */
     public function findUserByName() {
-//        $name = $this->request->getParam('name');
-//        $list = $this->model->findUserByName($name);
-//        return json_encode($list);
-        return "a";
+        $name = $this->request->getParam('name');
+        $list = $this->model->findUserByName($name);
+        return json_encode($list);
+    }
+
+    /**
+     * 为当前用户添加好友
+     *
+     * @return string 添加结果的json格式
+     */
+    public function addFriend() {
+        $user = $_SESSION['LoginUser'];
+        $friend = $this->request->getParam('name');
+        return $this->model->addFriend($user, $friend)->toJson();
     }
 }

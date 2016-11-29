@@ -1,8 +1,5 @@
 <?php
 
-require __DIR__ . "/../vo/ResultVO.php";
-require __DIR__ . "/../vo/LoginVO.php";
-require __DIR__ . "/../vo/RegisterVO.php";
 require __DIR__ . "/../model/AccountModel.php";
 
 /**

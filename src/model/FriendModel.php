@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . "/../vo/UserInfoVO.php";
-
 /**
  * Created by PhpStorm.
  * User: Y481L
@@ -22,6 +20,8 @@ class FriendModel {
     private $searchSql;
 
     public function __construct() {
+        $loginUser = $_SESSION['LoginUser'];
+
         $this->conn = Connection::getConnection();
 
         $this->friendSql = $this->conn->prepare(
@@ -31,8 +31,10 @@ class FriendModel {
 
         $this->searchSql = $this->conn->prepare(
             "SELECT name FROM user " .
-            "WHERE name LIKE '%' || :key || '%' ;"
+            "WHERE name LIKE '%' || :key || '%'" .
+            "AND name != '$loginUser' ;"
         );
+
     }
 
     /**
@@ -56,7 +58,7 @@ class FriendModel {
     }
 
     /**
-     * 模糊搜索与用户输入用户名匹配的用户
+     * 模糊搜索与用户输入用户名匹配的用户,不包括用户本人
      *
      * @param $name string 用户名
      * @return array 用户列表
@@ -72,5 +74,27 @@ class FriendModel {
             array_push($list, $vo->toMap());
         }
         return $list;
+    }
+
+
+    /**
+     * 为当前用户添加好友
+     *
+     * @param $user string 发出添加请求的用户
+     * @param $friend string 待添加用户的用户名
+     * @return ResultVO 添加结果，参见ResultVO的定义
+     */
+    public function addFriend($user, $friend) {
+        $count = $this->conn->exec(
+            "INSERT INTO friends VALUES " .
+            "('$user', '$friend');"
+        );
+
+        if($count == 1) {
+            return new ResultVO(true, "添加成功");
+        }
+        else {
+            return new ResultVO(false, "添加失败");
+        }
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/../model/UserModel.php";
+
 /**
  * Created by PhpStorm.
  * User: Y481L
@@ -10,7 +12,19 @@
  */
 class UserController extends Controller {
 
-    public function getUserInfo() {
+    private $model;
 
+    public function __construct($request, $response) {
+        parent::__construct($request, $response);
+        $this->model = new UserModel();
+    }
+
+    /**
+     * 获取当前登录用户信息
+     *
+     * @return string 当前用户信息的json格式
+     */
+    public function getCurrentUser() {
+        return $this->model->getCurrentUser()->toJson();
     }
 }

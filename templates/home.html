@@ -29,7 +29,6 @@
     </style>
 </head>
 <body>
-
     <nav class="navbar navbar-default">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -68,6 +67,7 @@
         </aside>
 
         <section class="row col-md-9" id="main-content"></section>
+
     </main>
 
     <script src="/res/js/jquery-3.1.1.min.js"></script>
@@ -97,6 +97,15 @@
                 $('#main-content').html(data);
             });
         }
+
+        $.ajax({
+            url: '/controller/UserController/getCurrentUser',
+            method: 'get',
+            success: function (result) {
+                var vo = JSON.parse(result);
+                $('#user_name').text(vo.name);
+            }
+        });
 
         showExerciseState();
     </script>

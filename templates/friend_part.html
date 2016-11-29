@@ -19,6 +19,17 @@
         height: 80px;
         margin: 10px 10%;
     }
+
+    .card-btn {
+        width: 72%;
+        height: 80%;
+        margin: 14% 10%;
+    }
+
+    .to-be-add {
+        border: deepskyblue 1px solid;
+    }
+
 </style>
 
 <section class="row col-md-9">
@@ -28,7 +39,7 @@
                    placeholder="输入好友昵称" id="text">
             <span class="input-group-btn">
                 <input class="btn btn-default" type="submit" value="搜索"
-                       id="btn" onclick="search();">
+                       id="btn">
             </span>
         </form>
     </section>
@@ -37,45 +48,87 @@
 
 </section>
 
+<script src="/res/js/jquery.tmpl.min.js"></script>
 <script>
 
-    function search() {
+    var friends = [];
+
+    $('#btn').on('click', function(e) {
+        e.preventDefault();
         var key = $('#text').val();
         $.ajax({
             url: '/controller/FriendController/findUserByName',
             method: 'post',
             data: {"name": key},
             success: function (result) {
-                alert(result);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert(errorThrown);
-                alert(jqXHR);
-                alert(textStatus);
+                //已添加朋友的模板
+                var template1 =
+                    '<div class="id-card col-md-3">' +
+                    '<div class="card-inner">' +
+                    '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
+                    '<p class="text-center">${name}</p></div>';
+                //未添加朋友的模板
+                var template2 =
+                    '<div class="id-card col-md-3">' +
+                    '<div class="card-inner to-be-add">' +
+                    '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
+                    '<p class="text-center">${name}</p>' +
+                    '<button class="btn btn-default card-btn" id="${id}">添加</button></div>';
+
+                //显示搜索结果
+                var list = JSON.parse(result);
+                var section = $('#list');
+                section.html('');
+                var len = list.length;
+                for (var i = 0; i < len; ++i) {
+                    const name = list[i].name;
+                    //显示好友
+                    if(friends.indexOf(name) != -1) {
+                        $.tmpl(template1, {"name": name}).appendTo(section);
+                    }
+                    //显示未添加用户
+                    else {
+                        $.tmpl(template2, {
+                            "name": name,
+                            "id": "btn-" + name
+                        }).appendTo(section);
+                        //添加按钮的点击事件监听
+                        $('#btn-' + name).on('click', function (e) {
+                            e.preventDefault();
+                            $.ajax({
+                                url: '/controller/FriendController/addFriend',
+                                method: 'post',
+                                data: {"name": name},
+                                success: function (result) {
+                                    alert(result);
+                                }
+                            });
+                        });
+                    }
+                }
             }
         });
-    }
+    });
 
     $.ajax({
         url: '/controller/FriendController/getFriends',
         method: 'get',
         success: function (result) {
-            var list = JSON.parse(result);
-
-            var template = {
-                pre :
+            var markup =
                     '<div class="id-card col-md-3">' +
                     '<div class="card-inner">' +
                     '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
-                    '<p class="text-center">',
-                post : '</p></div>'
-            };
+                    '<p class="text-center">${name}</p></div>';
 
+            var list = JSON.parse(result);
             var section = $('#list');
             var len = list.length;
+            friends = [];
             for (var i = 0; i < len; ++i) {
-                section.append(template.pre + list[i].name + template.post);
+                $.tmpl(markup, {"name": list[i].name}).appendTo(section);
+                friends.push(list[i].name);
             }
         }
-    })
+    });
 </script>
+
