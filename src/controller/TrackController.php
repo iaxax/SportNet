@@ -29,6 +29,14 @@ class TrackController extends Controller {
     }
 
     /**
+     * 获得一周内所有动态内容
+     */
+    public function getAllTracks() {
+        $list = $this->model->getAllTracks();
+        return $this->toJson($list);
+    }
+
+    /**
      * 获得当前登录用户的历史动态
      */
     public function getHistoryTracks() {

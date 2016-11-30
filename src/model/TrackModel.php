@@ -34,6 +34,21 @@ class TrackModel {
     }
 
     /**
+     * 获得一周内所有动态内容
+     *
+     * @return array 动态内容列表
+     */
+    public function getAllTracks() {
+
+        $result = $this->conn->query(
+            "SELECT * FROM track " .
+            "WHERE julianday('now') - julianday(publish_time) <= 7"
+        );
+
+        return $this->createTrackList($result);
+    }
+
+    /**
      * 获得当前登录用户的历史动态
      *
      * @param $user string 用户名

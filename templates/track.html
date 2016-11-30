@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>SportNet</title>
+    <link rel="stylesheet" href="/res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/res/fonts/glyphicons-halflings-regular.eot">
+    <link rel="stylesheet" href="/res/css/style.css"/>
+
+    <style>
+        .track-container {
+            margin: 50px auto 0;
+            background-color: #EEEEEE;
+        }
+
+        .track-aside {
+            padding: 20px;
+        }
+
+        .track-aside img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .track-content {
+            padding: 10px;
+        }
+
+        .track-time {
+            float: right;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-default" id="nav-bar"></nav>
+
+    <main class="container" id="tracks"></main>
+
+    <script src="/res/js/jquery-3.1.1.min.js"></script>
+    <script src="/res/js/bootstrap.min.js"></script>
+    <script src="/res/js/jquery.tmpl.min.js"></script>
+    <script>
+        $.ajax({
+            url: '/html/navbar.html',
+            method: 'get',
+            success: function (result) {
+                $('#nav-bar').html(result);
+                $('#nav-track').addClass('active');
+                $('#nav-home').removeClass('active');
+            }
+        });
+
+        var template =
+            '<div class="row track-container">' +
+                '<div class="col-md-2 track-aside">' +
+                    '<img src="/res/images/user_img.png" ' +
+                        ' class="center-block" alt="头像">' +
+                    '<br />' +
+                    '<p class="text-center">${publisher}</p>' +
+                '</div>' +
+
+                '<div class="col-md-10 track-content">' +
+                    '<p>${content}</p>' +
+                    '<p class="track-time">${time}</p>' +
+                '</div>' +
+            '</div>';
+
+        $.ajax({
+            url: '/controller/TrackController/getAllTracks',
+            method: 'get',
+            success: function (result) {
+                var arr = JSON.parse(result);
+                var len = arr.length;
+                var tracks = $('#tracks');
+                for(var i = 0; i < len; ++i) {
+                    $.tmpl(template, {
+                        "publisher": arr[i].publisher,
+                        "content": arr[i].content,
+                        "time": arr[i].time
+                    }).appendTo(tracks);
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
