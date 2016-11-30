@@ -5,12 +5,7 @@
     }
 
     .id-card {
-        padding: 20px;
         margin-top: 20px;
-    }
-
-    .card-inner {
-        margin: 10px;
         background-color: #eeeeee;
     }
 
@@ -50,7 +45,7 @@
         <label id="tip"></label>
     </section>
 
-    <section id="list"></section>
+    <section id="list" class="row"></section>
 
 </section>
 
@@ -69,14 +64,14 @@
             success: function (result) {
                 //已添加朋友的模板
                 var template1 =
-                    '<div class="id-card col-md-3">' +
-                    '<div class="card-inner">' +
+                    '<div class="id-card col-xs-8 col-sm-4 col-md-3 ' +
+                    'col-xs-offset-2">' +
                     '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
                     '<p class="text-center">${name}</p></div>';
                 //未添加朋友的模板
                 var template2 =
-                    '<div class="id-card col-md-3">' +
-                    '<div class="card-inner to-be-add">' +
+                    '<div class="id-card col-xs-8 col-sm-4 col-md-3 ' +
+                    'col-xs-offset-2 to-be-add">' +
                     '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
                     '<p class="text-center">${name}</p>' +
                     '<button class="btn btn-default card-btn" id="${id}">添加</button></div>';
@@ -99,7 +94,7 @@
                             "id": "btn-" + name
                         }).appendTo(section);
                         //添加按钮的点击事件监听
-                        var btn = $('#btn-' + name);
+                        const btn = $('#btn-' + name);
                         btn.on('click', function (e) {
                             e.preventDefault();
                             $.ajax({
@@ -135,8 +130,8 @@
         method: 'get',
         success: function (result) {
             var markup =
-                    '<div class="id-card col-md-3">' +
-                    '<div class="card-inner">' +
+                    '<div class="id-card col-md-3 col-sm-4 col-xs-8 ' +
+                    'col-xs-offset-2">' +
                     '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
                     '<p class="text-center">${name}</p></div>';
 

@@ -37,12 +37,13 @@
 
     //活动模板
     var template =
-        '<div class="col-md-4 activity">' +
+        '<div class="col-md-4 col-sm-4 col-xs-6 ' +
+        'col-xs-offset-3 col-sm-offset-2 col-md-offset-0 activity">' +
         '<div class="activity-inner">' +
         '<p class="text-center">${name}</p>' +
-        '<div id="creator-${name}${startTime}">' +
+        '<div id="creator${name}${datetime}">' +
         '<p>创建者 </p></div>' +
-        '<div id="member-${name}${startTime}">' +
+        '<div id="member${name}${datetime}">' +
         '<p>活动成员</p>' +
         '</div>' +
         '<p>活动时间：${startTime}</p>' +
@@ -62,21 +63,25 @@
         var arr = JSON.parse(result);
         var len = arr.length;
         for (var i = 0; i < len; ++i) {
-            var name = arr[i].name;
+            const name = arr[i].name;
+            const startTime = arr[i].startTime;
+            const datetime = startTime.replace(/[^\d]/g, '');
+
             $.tmpl(template, {
                 "name": name,
-                "startTime": arr[i].startTime,
+                "startTime": startTime,
                 "location": arr[i].location,
-                "type": arr[i].type
+                "type": arr[i].type,
+                "datetime": datetime
             }).appendTo(element);
 
             $.tmpl(imgTmpl, {
                 "name": arr[i].creator
-            }).appendTo($('#creator-' + arr[i].name + arr[i].startTime));
+            }).appendTo($('#creator' + name + datetime));
 
             var p = arr[i].p;
             var p_len = p.length;
-            var member = $('#member-' + name + arr[i].startTime);
+            const member = $('#member' + name + datetime);
             for(var j = 0; j < p_len; ++j) {
                 $.tmpl(imgTmpl, {
                     "name": p[j].name

@@ -69,7 +69,7 @@ class ActivityModel {
     public function getHistory($user) {
 
         $result = $this->conn->query(
-            "SELECT a.* FROM activity AS a, activity_join AS aj " .
+            "SELECT DISTINCT creator,  name, startTime, location, type FROM activity AS a, activity_join AS aj " .
             "WHERE (strftime('%s', 'now') - strftime('%s', a.startTime)) > 0 " .
             "AND a.name = aj.activity AND " .
             "(a.creator = '$user' or aj.participant = '$user');"
