@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>SportNet</title>
+    <link rel="stylesheet" href="/res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/res/css/style.css">
+
+    <style>
+        .chart {
+            height: 400px;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-default" id="nav-bar"></nav>
+    
+    <main class="container">
+        <div class="row">
+            <section class="chart col-md-8 col-sm-10 col-xs-12
+                     col-md-offset-2 col-sm-offset-1" id="activity_type"
+            ></section>
+        </div>
+        <div class="row">
+            <section class="chart col-md-8 col-sm-10 col-xs-12
+                     col-md-offset-2 col-sm-offset-1" id="activity_time"
+            ></section>
+        </div>
+    </main>
+
+    <script src="/res/js/jquery-3.1.1.min.js"></script>
+    <script src="/res/js/bootstrap.min.js"></script>
+    <script src="/res/js/echarts.min.js"></script>
+    <script>
+        //获得导航栏
+        $.ajax({
+            url: '/html/navbar.html',
+            method: 'get',
+            success: function (result) {
+                $('#nav-bar').html(result);
+                $('#nav-home').removeClass('active');
+                $('#nav-statistics').addClass('active');
+            }
+        });
+
+        $.ajax({
+            url: '/controller/ExerciseController/getExerciseTypeStat',
+            method: 'get',
+            success: function(result) {
+                var stat = JSON.parse(result);
+                var type = [];
+                var value = [];
+                for (var key in stat) {
+                    type.push(key);
+                    value.push(stat[key]);
+                }
+                var typeChart = echarts.init(document.getElementById('activity_type'));
+                var option1 = {
+                    title: {
+                        text : "用户活动类型",
+                        x: 'center'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['类型']
+                    },
+                    xAxis: {
+                        data: type
+                    },
+                    yAxis: {},
+                    series: [{
+                        name : '用户活动类型',
+                        type : 'bar',
+                        data : value
+                    }]
+                };
+                typeChart.setOption(option1);
+            }
+        });
+
+        $.ajax({
+            url: '/controller/ExerciseController/getExerciseTimeStat',
+            method: 'get',
+            success: function (result) {
+                var stat = JSON.parse(result);
+                var type = [];
+                var data = [];
+                for (var key in stat) {
+                    type.push(key);
+                    data.push({key: stat[key], name: key});
+                }
+                var timeChart = echarts.init(document.getElementById('activity_time'));
+                var option2 = {
+                    title: {
+                        text: "用户活动时长",
+                        x: 'center'
+                    },
+                    tooltip: {},
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data: type
+                    },
+                    series: [{
+                        name: '用户活动类型',
+                        type: 'pie',
+                        center: ['50%', '62%'],
+                        data: data
+                    }]
+                };
+                timeChart.setOption(option2);
+            }
+        });
+
+        $(document).ready(function () {
+
+
+
+        });
+    </script>
+</body>
+</html>

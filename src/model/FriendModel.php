@@ -97,4 +97,24 @@ class FriendModel {
             return new ResultVO(false, "添加失败");
         }
     }
+
+    /**
+     * 删除好友
+     * @param $user string 发出删除请求的用户
+     * @param $friend string 待删除用户的用户名
+     * @return ResultVO 删除结果，参见ResultVO的定义
+     */
+    public function removeFriend($user, $friend) {
+        $count = $this->conn->exec(
+            "delete from friends " .
+            "where user = '$user' and friend = '$friend';"
+        );
+
+        if($count == 1) {
+            return new ResultVO(true, "删除成功");
+        }
+        else {
+            return new ResultVO(false, "删除失败");
+        }
+    }
 }

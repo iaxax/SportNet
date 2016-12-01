@@ -25,4 +25,6 @@ require __DIR__ . "/vo/RegisterVO.php";
 require __DIR__ . "/vo/ExerciseStat.php";
 require __DIR__ . "/vo/ActivityVO.php";
 require __DIR__ . "/vo/TrackVO.php";
+require __DIR__ . "/vo/ExerciseTypeStat.php";
+require __DIR__ . "/vo/ExerciseTimeStat.php";
 

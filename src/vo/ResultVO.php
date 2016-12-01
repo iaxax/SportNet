@@ -33,6 +33,10 @@ class ResultVO {
         return $this->message;
     }
 
+    public function setMessage($msg) {
+        $this->message = $msg;
+    }
+
     public function toJson() {
         $msg = urlencode($this->message);
         $json = array(

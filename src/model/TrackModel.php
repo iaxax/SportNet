@@ -42,7 +42,8 @@ class TrackModel {
 
         $result = $this->conn->query(
             "SELECT * FROM track " .
-            "WHERE julianday('now') - julianday(publish_time) <= 7"
+            "WHERE julianday('now') - julianday(publish_time) <= 7 " .
+            "ORDER BY publish_time desc"
         );
 
         return $this->createTrackList($result);
@@ -63,6 +64,33 @@ class TrackModel {
         );
 
         return $this->createTrackList($result);
+    }
+
+    /**
+     * 当前用户发表一条动态
+     *
+     * @param $publisher string 动态发布者
+     * @param $content string 动态内容
+     * @param 动态内容
+     * @return mixed 发表动态结果，参见ResultVO的定义
+     */
+    public function createTrack($publisher, $content) {
+
+        $time = date('Y-m-d H:i:s');
+
+        $result = $this->conn->exec(
+            "insert into track values " .
+            "('$publisher', '$content', '$time')"
+        );
+
+        if($result == 1) {
+            return new ResultVO(true, new TrackVO(
+                $publisher, $content, $time
+            ));
+        }
+        else {
+            return new ResultVO(false, "动态发表失败");
+        }
     }
 
     private function createTrackList(PDOStatement $result) {

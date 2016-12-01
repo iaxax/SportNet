@@ -24,17 +24,19 @@
             </li>
             <li id="nav-activity">
                 <a href="javascript:void(0);"
-                   onclick="jump('/html/home.html');"
+                   onclick="jump('/html/activity.html');"
                 >活动</a>
             </li>
             <li id="nav-statistics">
                 <a href="javascript:void(0);"
-                   onclick="jump('/html/home.html');"
+                   onclick="jump('/html/statistics.html');"
                 >统计</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">退出</a></li>
+            <li><a href="javascript:void(0);"
+                onclick="quit();"
+            >退出</a></li>
         </ul>
     </div><!--/.nav-collapse -->
 </div><!--/.container-fluid -->
@@ -43,5 +45,15 @@
 
     function jump(location) {
         window.location = location;
+    }
+
+    function quit() {
+        $.ajax({
+            url: '/controller/AccountController/logout',
+            method: 'get',
+            success: function () {
+                window.location = '/templates/login.html';
+            }
+        })
     }
 </script>

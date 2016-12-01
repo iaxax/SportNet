@@ -32,11 +32,52 @@
             float: right;
             margin: 40px auto;
         }
+
+        .btn-container {
+            width: 50%;
+            margin-left: 25%;
+            display: flex;
+            direction: rtl;
+        }
+
+        textarea {
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        #track-tip {
+            margin: 20px;
+        }
+
+        .btn-container .btn {
+            margin: 20px;
+        }
+
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-default" id="nav-bar"></nav>
+
+    <img src="/res/images/plus.png" alt="发表动态"
+         class="center-block" id="create-btn"
+         title="点击发表动态"
+    >
+
+    <section id="track" class="row">
+        <label for="text"></label>
+        <textarea name="track_text" cols="30" rows="5" id="text"
+                  class="col-md-6 col-sm-6 col-xs-8 col-md-offset-3
+                   col-sm-offset-3 col-xs-offset-2"></textarea>
+
+        <div class="btn-container">
+            <input class="btn btn-default" type="submit"
+                   value="取消" id="cancel">
+            <input class="btn btn-default" type="submit"
+                   value="创建" id="ok">
+            <label id="track-tip"></label>
+        </div>
+    </section>
 
     <main class="container" id="tracks"></main>
 
@@ -44,6 +85,7 @@
     <script src="/res/js/bootstrap.min.js"></script>
     <script src="/res/js/jquery.tmpl.min.js"></script>
     <script>
+        //加载导航栏
         $.ajax({
             url: '/html/navbar.html',
             method: 'get',
@@ -54,21 +96,83 @@
             }
         });
 
+        //动态的文档模板
         var template =
             '<div class="row track-container">' +
-                '<div class="col-md-2 track-aside">' +
-                    '<img src="/res/images/user_img.png" ' +
-                        ' class="center-block" alt="头像">' +
-                    '<br />' +
-                    '<p class="text-center">${publisher}</p>' +
-                '</div>' +
+            '<div class="col-md-2 track-aside">' +
+            '<img src="/res/images/user_img.png" ' +
+            ' class="center-block" alt="头像">' +
+            '<br />' +
+            '<p class="text-center">${publisher}</p>' +
+            '</div>' +
 
-                '<div class="col-md-10 track-content">' +
-                    '<p>${content}</p>' +
-                    '<p class="track-time">${time}</p>' +
-                '</div>' +
+            '<div class="col-md-10 track-content">' +
+            '<p>${content}</p>' +
+            '<p class="track-time">${time}</p>' +
+            '</div>' +
             '</div>';
 
+        var track = $('#track');
+        track.css('display', 'none');
+
+        $('#create-btn').on('click', function (e) {
+            e.preventDefault();
+            track.css('display', 'block');
+        })
+
+        var tip = $('#track-tip');
+        function showError(text) {
+            tip.css('display', 'inline');
+            tip.css('color', 'red');
+            tip.text(text);
+            setTimeout(function () {
+                tip.css('display', 'none');
+            }, 2000);
+        }
+
+        $('#ok').on('click', function (e) {
+            e.preventDefault();
+
+            var text = $('#text').val();
+            if(!text) {
+                showError("动态内容不能为空");
+                return;
+            }
+
+            $.ajax({
+                url: '/controller/TrackController/createTrack',
+                method: 'post',
+                data: {"content": text},
+                success: function (result) {
+                    var vo = JSON.parse(result);
+                    var message = vo.message;
+                    if(vo.success) {
+                        tip.css('display', 'inline');
+                        tip.css('color', 'green');
+                        tip.text("发表动态成功");
+                        setTimeout(function () {
+                            tip.css('display', 'none');
+                            track.css('display', 'none');
+                            $.tmpl(template, {
+                                "publisher": message.publisher,
+                                "content": text,
+                                "time": message.time
+                            }).appendTo($('#tracks'));
+                        }, 2000);
+                    }
+                    else {
+                        showError(message.msg);
+                    }
+                }
+            });
+        });
+
+        $('#cancel').on('click', function (e) {
+            e.preventDefault();
+            track.css('display', 'none');
+        });
+
+        //生成动态的文档
         $.ajax({
             url: '/controller/TrackController/getAllTracks',
             method: 'get',

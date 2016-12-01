@@ -21,10 +21,6 @@
         margin: 14% 10%;
     }
 
-    .to-be-add {
-        border: deepskyblue 1px solid;
-    }
-
     #tip {
         margin-left: 20px;
     }
@@ -54,6 +50,70 @@
 
     var friends = [];
 
+    function add(e, btn , name) {
+        e.preventDefault();
+        $.ajax({
+            url: '/controller/FriendController/addFriend',
+            method: 'post',
+            async: false,
+            data: {"name": name},
+            success: function (result) {
+                var vo = JSON.parse(result);
+                var tip = $("#tip");
+                tip.css('display', 'inline');
+                if(vo.success) {
+                    tip.css('color', 'green');
+                }
+                else {
+                    tip.css('color', 'red');
+                }
+                tip.text(vo.message);
+                btn.removeClass('btn-success');
+                btn.addClass('btn-warning');
+                btn.text('删除');
+                setTimeout(function () {
+                    tip.css('display', 'none');
+                    btn.unbind('click');
+                    btn.bind('click', function (e){
+                        remove(e, btn);
+                    });
+                }, 2000);
+            }
+        });
+    }
+
+    function remove(e, btn, name) {
+        e.preventDefault();
+        $.ajax({
+            url: '/controller/FriendController/removeFriend',
+            method: 'post',
+            async: false,
+            data: {"name": name},
+            success: function (result) {
+                var vo = JSON.parse(result);
+                var tip = $("#tip");
+                tip.css('display', 'inline');
+                if(vo.success) {
+                    tip.css('color', 'green');
+                }
+                else {
+                    tip.css('color', 'red');
+                }
+                tip.text(vo.message);
+                btn.removeClass('btn-warning');
+                btn.addClass('btn-success');
+                btn.text('添加');
+                setTimeout(function () {
+                    tip.css('display', 'none');
+                    btn.unbind('click');
+                    btn.bind('click', function (e){
+                        add(e, btn);
+                    });
+                }, 2000);
+            }
+        });
+    }
+
     $('#btn').on('click', function(e) {
         e.preventDefault();
         var key = $('#text').val();
@@ -67,14 +127,15 @@
                     '<div class="id-card col-xs-8 col-sm-4 col-md-3 ' +
                     'col-xs-offset-2">' +
                     '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
-                    '<p class="text-center">${name}</p></div>';
+                    '<p class="text-center">${name}</p>' +
+                    '<button class="btn btn-warning card-btn" id="${id}">删除</button></div>';
                 //未添加朋友的模板
                 var template2 =
                     '<div class="id-card col-xs-8 col-sm-4 col-md-3 ' +
-                    'col-xs-offset-2 to-be-add">' +
+                    'col-xs-offset-2">' +
                     '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
                     '<p class="text-center">${name}</p>' +
-                    '<button class="btn btn-default card-btn" id="${id}">添加</button></div>';
+                    '<button class="btn btn-success card-btn" id="${id}">添加</button></div>';
 
                 //显示搜索结果
                 var list = JSON.parse(result);
@@ -85,7 +146,15 @@
                     const name = list[i].name;
                     //显示好友
                     if(friends.indexOf(name) != -1) {
-                        $.tmpl(template1, {"name": name}).appendTo(section);
+                        $.tmpl(template1, {
+                            "name": name,
+                            "id": 'btn-' + name
+                        }).appendTo(section);
+                        //删除好友按钮的点击事件监听
+                        const btn = $('#btn-' + name);
+                        btn.on('click', function (e) {
+                            remove(e, btn, name);
+                        });
                     }
                     //显示未添加用户
                     else {
@@ -93,31 +162,10 @@
                             "name": name,
                             "id": "btn-" + name
                         }).appendTo(section);
-                        //添加按钮的点击事件监听
+                        //添加好友按钮的点击事件监听
                         const btn = $('#btn-' + name);
                         btn.on('click', function (e) {
-                            e.preventDefault();
-                            $.ajax({
-                                url: '/controller/FriendController/addFriend',
-                                method: 'post',
-                                data: {"name": name},
-                                success: function (result) {
-                                    var vo = JSON.parse(result);
-                                    var tip = $("#tip");
-                                    tip.css('display', 'inline');
-                                    if(vo.success) {
-                                        tip.css('color', 'green');
-                                        btn.css('display', 'none');
-                                    }
-                                    else {
-                                        tip.css('color', 'red');
-                                    }
-                                    tip.text(vo.message);
-                                    setTimeout(function () {
-                                        tip.css('display', 'none');
-                                    }, 2000);
-                                }
-                            });
+                            add(e, btn, name);
                         });
                     }
                 }
@@ -125,25 +173,31 @@
         });
     });
 
-    $.ajax({
+    var section = $('#list');
+    function getFriends() {
+        section.html('');
+        $.ajax({
         url: '/controller/FriendController/getFriends',
         method: 'get',
         success: function (result) {
-            var markup =
-                    '<div class="id-card col-md-3 col-sm-4 col-xs-8 ' +
-                    'col-xs-offset-2">' +
-                    '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
-                    '<p class="text-center">${name}</p></div>';
-
-            var list = JSON.parse(result);
-            var section = $('#list');
-            var len = list.length;
-            friends = [];
-            for (var i = 0; i < len; ++i) {
-                $.tmpl(markup, {"name": list[i].name}).appendTo(section);
-                friends.push(list[i].name);
+                var markup =
+                        '<div class="id-card col-md-3 col-sm-4 col-xs-8 ' +
+                        'col-xs-offset-2">' +
+                        '<img class="friend-pic" src="/res/images/user_img.png" alt="用户头像">' +
+                        '<p class="text-center">${name}</p></div>';
+                var list = JSON.parse(result);
+                var len = list.length;
+                friends = [];
+                for (var i = 0; i < len; ++i) {
+                    $.tmpl(markup, {"name": list[i].name}).appendTo(section);
+                    friends.push(list[i].name);
+                }
             }
-        }
-    });
+        });
+    }
+
+    getFriends();
+
+
 </script>
 

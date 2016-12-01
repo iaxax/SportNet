@@ -16,7 +16,7 @@ class AccountController extends Controller {
      * 用户登录
      * @return string 登录结果
      */
-    function login() {
+    public function login() {
         $name = $this->request->getParam('name');
         $pw = $this->request->getParam('pw');
         $model = new AccountModel();
@@ -25,12 +25,12 @@ class AccountController extends Controller {
         return $result->toJson();
     }
 
-    /*
+    /**
      * 用户注册
      *
-     * @return ResultVO 注册结果，参见ResultVO的定义
+     * @return string 注册结果的json格式
      */
-    function register() {
+    public function register() {
         $model = new AccountModel();
         $result = $model->register(new RegisterVO(
             $this->request->getParam('name'),
@@ -39,6 +39,13 @@ class AccountController extends Controller {
             $this->request->getParam('pw')
         ));
         return $result->toJson();
+    }
+
+    /**
+     * 用户退出
+     */
+    public function logout() {
+        $_SESSION['LoginUser'] = null;
     }
 
 }

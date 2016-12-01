@@ -44,6 +44,46 @@ class ActivityController extends Controller {
         return $this->toJson($list);
     }
 
+    /**
+     * 获得所有未到期的活动
+     */
+    public function getAllActivities() {
+        $list = $this->model->getAllActivities();
+        return $this->toJson($list);
+    }
+
+    /**
+     * 参与一个活动
+     */
+    public function joinActivity() {
+        return $this->model->joinActivity(
+            $this->request->getParam('user'),
+            $this->request->getParam('activity')
+        )->toJson();
+    }
+
+    /**
+     * 检测系统是否存在该活动名
+     */
+    public function isNameExist() {
+        $name = $this->request->getParam("name");
+        $result = $this->model->isNameExist($name);
+        return json_encode(array("same" => $result));
+    }
+
+    /**
+     * 创建一个活动
+     */
+    public function createActivity() {
+        return $this->model->createActivity(
+            $this->request->getParam('name'),
+            $_SESSION['LoginUser'],
+            $this->request->getParam('time'),
+            $this->request->getParam('location'),
+            $this->request->getParam('type')
+        )->toJson();
+    }
+
     private function toJson($list) {
         $arr = array();
         foreach ($list as $vo) {

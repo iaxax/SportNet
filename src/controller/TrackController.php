@@ -45,6 +45,27 @@ class TrackController extends Controller {
         return $this->toJson($list);
     }
 
+    /**
+     * 当前用户发表一条动态
+     */
+    public function createTrack() {
+        $result = $this->model->createTrack(
+            $_SESSION['LoginUser'],
+            $this->request->getParam('content')
+        );
+
+        if($result->getMessage() instanceof TrackVO) {
+            $vo = $result->getMessage();
+            return urldecode(json_encode(array(
+                "success" => $result->getSuccess(),
+                "message" => $vo->toMap()
+            )));
+        }
+        else {
+            return $result->toJson();
+        }
+    }
+
     private function toJson($arr) {
         $list = array();
 

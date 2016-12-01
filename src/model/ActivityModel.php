@@ -79,6 +79,85 @@ class ActivityModel {
     }
 
     /**
+     * 获得所有未到期的活动
+     *
+     * @return array 活动列表
+     */
+    public function getAllActivities() {
+
+        $result = $this->conn->query(
+            "SELECT * FROM activity " .
+            "WHERE (strftime('%s', 'now') - strftime('%s', startTime)) < 0;"
+        );
+
+        return $this->createActivityList($result);
+    }
+
+    /**
+     * 参与一个活动
+     *
+     * @param $user string 用户名
+     * @param $activity string 活动名
+     * @return ResultVO 添加结果，参见ResultVO的定义
+     */
+    public function joinActivity($user, $activity) {
+
+        $result = $this->conn->exec(
+            "insert into activity_join " .
+            "values('$activity', '$user');"
+        );
+
+        if($result == 1) {
+            return new ResultVO(true, "添加活动成功");
+        }
+        else {
+            return new ResultVO(false, "添加活动失败");
+        }
+    }
+
+    /**
+     * 检测系统是否存在该活动名
+     *
+     * @param $name string 活动名称
+     * @return bool 是否存在该活动名称
+     */
+    public function isNameExist($name) {
+        $result = $this->conn->query(
+            "select * from activity " .
+            "where name = '$name';"
+        );
+
+        return $result->fetch();
+    }
+
+    /**
+     * 创建一个活动
+     *
+     * @param $name string 活动名称
+     * @param $creator string 创建者
+     * @param $time string 活动开始时间
+     * @param $location string 活动地点
+     * @param $type string 活动类型
+     * @return ResultVO 创建结果，参见ResultVO的定义
+     */
+    public function createActivity(
+        $name, $creator, $time, $location, $type
+    ) {
+
+        $result = $this->conn->exec(
+            "insert into activity values" .
+            "('$name', '$creator', '$time', '$location', '$type');"
+        );
+
+        if($result == 1) {
+            return new ResultVO(true, "活动创建成功");
+        }
+        else {
+            return new ResultVO(false, "活动创建失败");
+        }
+    }
+
+    /**
      * 由结果集创建活动列表
      *
      * @param PDOStatement $result 结果集

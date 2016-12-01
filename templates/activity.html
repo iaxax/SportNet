@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>SportNet</title>
+    <link rel="stylesheet" href="/res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/res/fonts/glyphicons-halflings-regular.eot">
+    <link rel="stylesheet" href="/res/css/style.css"/>
+
+    <style>
+
+        .activity-container {
+            margin: 30px auto;
+            display: -webkit-flex;
+            display: flex;
+            background-color: #eeeeee;
+        }
+
+        .activity-item {
+            width: 14.28%;
+            padding: 20px 20px 10px;
+        }
+
+        .activity-container img {
+            width: 20%;
+            height: 40px;
+            margin-right: 3%;
+        }
+
+        #create-btn {
+            width: 100px;
+            height: 100px;
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+
+        .input-container {
+            width: 46%;
+            margin: 30px 27%;
+        }
+
+        .btn-container {
+            width: 50%;
+            margin-left: 25%;
+            display: flex;
+            direction: rtl;
+        }
+
+        .btn-container .btn {
+            margin: 10px;
+        }
+
+        #form-tip {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-default" id="nav-bar"></nav>
+
+    <img src="/res/images/plus.png" alt="创建活动"
+         class="center-block" id="create-btn"
+         title="点击创建活动" onclick="showForm();"
+    >
+
+    <section id="activity-form">
+        <div class="input-container">
+            <input class="form-control" type="text"
+                   placeholder="输入活动名" id="a-name">
+        </div>
+        <div class="input-container">
+            <input class="form-control" type="text"
+                   placeholder="输入开始时间(例如 2016-01-1 00:00:00)" id="a-time">
+        </div>
+        <div class="input-container">
+            <input class="form-control" type="text"
+                   placeholder="输入活动地点" id="a-location">
+        </div>
+        <div class="input-container">
+            <input class="form-control" type="text"
+                   placeholder="输入活动类型" id="a-type">
+        </div>
+        <div class="btn-container">
+            <input class="btn btn-default" type="submit"
+                   value="取消" id="cancel">
+            <input class="btn btn-default" type="submit"
+                   value="创建" id="ok">
+            <label id="form-tip"></label>
+        </div>
+    </section>
+
+    <main class="container" id="activities"></main>
+
+    <script src="/res/js/jquery-3.1.1.min.js"></script>
+    <script src="/res/js/bootstrap.min.js"></script>
+    <script src="/res/js/jquery.tmpl.min.js"></script>
+    <script>
+        //获得导航栏
+        $.ajax({
+            url: '/html/navbar.html',
+            method: 'get',
+            success: function (result) {
+                $('#nav-bar').html(result);
+                $('#nav-home').removeClass('active');
+                $('#nav-activity').addClass('active');
+            }
+        });
+
+        //活动文档模板
+        var template =
+            '<div class="activity-container">' +
+            '<div class="text-center activity-item">' +
+            '<br />' +
+            '<p>${name}</p>' +
+            '</div>' +
+            '<div class="text-center activity-item">' +
+            '<p>发起者</p><p>${creator}</p>' +
+            '</div>' +
+            '<div class="text-center activity-item">' +
+            '<p>参与者</p><p>${num}</p>' +
+            '</div>' +
+            '<div class="text-center activity-item">' +
+            '<p>开始时间</p><p>${time}</p>' +
+            '</div>'  +
+            '<div class="text-center activity-item">' +
+            '<p>地点</p><p>${location}</p>' +
+            '</div>' +
+            '<div class="text-center activity-item">' +
+            '<p>类型</p><p>${type}</p>' +
+            '</div>' +
+            '<div class="text-center activity-item" ' +
+            'title="点击参与活动"">' +
+            '<br />' +
+            '<button class="btn btn-success glyphicon glyphicon-plus" ' +
+            ' id="${name}"></button>' +
+            '<p id="${name}tip"></p>' +
+            '</div>' +
+            '</div>';
+
+        function showFormError(text) {
+            form_tip.css('display', 'inline');
+            form_tip.css('color', 'red');
+            form_tip.text(text);
+            setTimeout(function () {
+                form_tip.css('display', 'none');
+            }, 2000);
+        }
+
+        //隐藏创建活动填写表格
+        var form = $('#activity-form');
+        form.css('display', 'none');
+        function showForm() {
+            form.css('display', 'block');
+        }
+
+        //确定创建活动按钮监听
+        const form_tip = $('#form-tip');
+        $('#ok').on('click', function (e) {
+            e.preventDefault();
+
+            //检查表格是否填写完整
+            var a_name = $('#a-name').val();
+            if(!a_name) {
+                showFormError('请填写活动名称');
+                return;
+            }
+            var is_same = null;
+
+            $.ajax({
+                url: '/controller/ActivityController/isNameExist',
+                method: 'post',
+                data: {"name": a_name},
+                async: false,
+                success: function (result) {
+                    var obj = JSON.parse(result);
+                    is_same = obj.same;
+                }
+            });
+            if(is_same) {
+                showFormError("该活动名称已经存在");
+                return;
+            }
+
+            var a_time = $('#a-time').val();
+            if(!a_time) {
+                showFormError("请填写活动开始时间");
+                return;
+            }
+
+            var a_loc = $('#a-location').val();
+            if(!a_loc) {
+                showFormError("请填写活动地点");
+                return;
+            }
+
+            var a_type = $('#a-type').val();
+            if(!a_type) {
+                showFormError("请填写活动类型");
+                return;
+            }
+
+            //提交创建活动申请
+            $.ajax({
+                url: '/controller/ActivityController/createActivity',
+                method: 'post',
+                data: {
+                    "name": a_name,
+                    "time": a_time,
+                    "location": a_loc,
+                    "type": a_type
+                },
+                success: function (result) {
+                    var vo = JSON.parse(result);
+                    if(vo.success) {
+                        form_tip.css('display', 'inline');
+                        form_tip.css('color', 'green');
+                        form_tip.text(vo.message);
+                        setTimeout(function () {
+                            form_tip.css('display', 'none');
+                            form.css('display', 'none');
+                            $.tmpl(template, {
+                                "name": a_name,
+                                "creator": currentUser,
+                                "num":0,
+                                "time": a_time,
+                                "location": a_loc,
+                                "type": a_type
+                            }).appendTo($('#activities'));
+                            $('#' + a_name).css('display', 'none');
+                        }, 2000);
+                    }
+                    else {
+                        showFormError(vo.message);
+                    }
+                }
+            });
+        });
+
+        //取消创建活动按钮监听
+        $('#cancel').on('click', function (e) {
+            e.preventDefault();
+            form.css('display', 'none');
+        });
+
+        //获得当前登录用户
+        var currentUser = null;
+        $.ajax({
+            url: '/controller/UserController/getCurrentUser',
+            method: 'get',
+            async: false,
+            success: function (result) {
+                currentUser = JSON.parse(result).name;
+            }
+        });
+
+        function join(activity, tip, btn) {
+            $.ajax({
+                url: '/controller/ActivityController/joinActivity',
+                method: 'post',
+                data: {
+                    "user": currentUser,
+                    "activity": activity
+                },
+                success: function (result) {
+                    var vo = JSON.parse(result);
+                    tip.css('display', 'block');
+                    tip.css('margin-top', '20px');
+                    if(vo.success) {
+                        tip.css('color', 'green');
+                        btn.css('display', 'none');
+                    }
+                    else {
+                        tip.css('color', 'red');
+                    }
+                    tip.text(vo.message);
+                    setTimeout(function () {
+                        tip.css('display', 'none');
+                    }, 2000);
+                }
+            });
+        }
+
+        //生成活动文档
+        $.ajax({
+            url: '/controller/ActivityController/getAllActivities',
+            method: 'get',
+            success: function (result) {
+                var arr = JSON.parse(result);
+                var len = arr.length;
+                var node = $('#activities');
+                for(var i = 0; i < len; ++i) {
+                    const name = arr[i].name;
+                    const creator = arr[i].creator;
+                    const p = arr[i].p;
+                    $.tmpl(template, {
+                        "name": name,
+                        "creator": creator,
+                        "num": p.length,
+                        "time": arr[i].startTime,
+                        "location": arr[i].location,
+                        "type": arr[i].type
+                    }).appendTo(node);
+
+                    //检查当前用户是否参与该活动
+                    var hasJoin = false;
+                    var p_len = p.length;
+                    for(var j = 0; j < p_len; ++j) {
+                        if(p[j].name == currentUser) {
+                            hasJoin = true;
+                            break;
+                        }
+                    }
+                    //如果用户参与或创建了该活动，则不显示添加活动按钮
+                    const btn = $('#' + name);
+                    if(creator == currentUser || hasJoin) {
+                        btn.css('display', 'none');
+                    }
+                    else {
+                        btn.on('click', function (e) {
+                            e.preventDefault();
+                            join(name, $('#' + name + 'tip'), btn);
+                        });
+                    }
+
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

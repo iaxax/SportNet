@@ -51,4 +51,13 @@ class FriendController extends Controller {
         $friend = $this->request->getParam('name');
         return $this->model->addFriend($user, $friend)->toJson();
     }
+
+    /**
+     * 删除好友
+     */
+    public function removeFriend() {
+        $user = $_SESSION['LoginUser'];
+        $friend = $this->request->getParam('name');
+        return $this->model->removeFriend($user, $friend)->toJson();
+    }
 }

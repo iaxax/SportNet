@@ -19,6 +19,14 @@ $app->map(['GET', 'POST'], '/controller/{controller}/{method}',
     }
 );
 
+// 运动信息注入
+$app->post('/data/{user}',
+    function ($request, $response, $args) {
+        $controller = new ExerciseController($request, $response);
+        $controller->createExerciseInfo($args['user']);
+        return "success";
+});
+
 // 拦截其他请求
 $app->map(['GET', 'POST'], '[/{params:.*}]', function ($request, $response, $args) {
     return $this->renderer->render($response, 'login.html', $args);
